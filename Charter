@@ -1,0 +1,53 @@
+- Create a repo on your personal GitHub (e.g., github.com/yourusername/evasive-lab-charter)
+- Commit the charter.md as your first public artifact
+- Optional (later): Add a GitHub Pages site (yourusername.github.io) for a nice landing page showcasing the lab
+
+**Why personal account is perfect for now**:  
+- Zero overhead  
+- Full control  
+- Easy to migrate to org later if it grows  
+- Many legendary open-source safety projects started exactly like this
+
+## Phase 1 – Hardware Setup (Including Open-Source & Zero-Budget Options)
+Security Best Practice: Use cloud notebooks or local CPU for now – no local GPU required.
+
+### Recommended Options (Balanced Performance & Openness)
+
+| Category                  | Recommendation                                      | Pros                                      | Cons                                        | Approx Cost | Best For Your Lab                  |
+|---------------------------|-----------------------------------------------------|-------------------------------------------|---------------------------------------------|-------------|------------------------------------|
+| **Best Overall (Fastest)**| 4–6× NVIDIA RTX 5090/4090 or used H100             | Mature CUDA ecosystem, fastest for 405B+ models | Proprietary drivers                        | $4k–15k    | Full-speed inference & fine-tuning |
+| **Open Software Stack**   | AMD Instinct MI300X or RX 7900 XTX + ROCm           | Fully open-source ROCm stack, great PyTorch support | Slightly behind NVIDIA in some tools       | $5k–20k    | Responsible open alternative       |
+| **Hybrid/Open Build**     | TinyBox (tinygrad project) – 6× AMD 7900 XTX        | Designed for open AI workloads, rackable  | Mixed open/proprietary components          | $15k–25k   | PetaFLOP-class semi-open rig       |
+| **Fully Open Hardware**   | RISC-V boards (Milk-V Megrez, XaLogic K210 HAT) or FPGA projects (Vortex, VeriGPU) | Truly open designs, customizable, low power | Much slower for large LLMs (edge-focused)  | $200–2k    | TinyAI experiments & prototyping   |
+| **Open Accelerator IP**   | NVIDIA NVDLA (open-source DL core) on FPGA          | Free Verilog, inference-only              | Older tech, not LLM-scale                  | Free + FPGA| Custom edge evasion models         |
+
+### Zero-Budget Starter Options (No Local GPU Needed – Current as of Dec 2025)
+| Option                          | Cost | GPU Type                  | Weekly/Monthly Limits                  | Notes & Tips                              |
+|---------------------------------|------|---------------------------|----------------------------------------|-------------------------------------------|
+| **Google Colab Free**           | $0   | T4 / occasional better    | ~12-20 hrs/week (variable)             | Save notebooks often                      |
+| **Kaggle Notebooks**            | $0   | P100 or T4 (16GB)         | ~30 GPU hours/week                     | Great for datasets & competitions         |
+| **Amazon SageMaker Studio Lab** | $0   | T4 GPU                    | 4-8 hrs/session (no card needed)       | Consistent sessions                       |
+| **Paperspace Gradient Free**    | $0   | Limited GPU hours         | Varies                                 | Easy Jupyter UI                           |
+| **Lightning.ai Free**           | $0   | GPU bursts + free CPU     | Limited GPU time                       | Good for PyTorch Lightning                |
+| **Free Credits Stack**          | $0   | Various (A100/H100 possible)| $100–$500 credits from new accounts    | Google Cloud, AWS, Azure trials           |
+
+**Zero-Budget Advice**: Start with Colab/Kaggle → publish results → apply for grants (many give free GPUs for open research).
+
+## Phase 2 – 100% Open-Source Software Stack (Dec 2025)
+- Model Serving      → vLLM 0.7+ or llama.cpp / Ollama
+- Top Models         → Llama-4-Scout-405B-Instruct, DeepSeek-V3-236B, Mistral-3-8x22B, Qwen3-235B (use quantized/small ones first)
+- Fine-Tuning        → Axolotl + Unsloth or Torchtune (Meta)
+- LoRA/Adapters      → PEFT + LoRAX
+- Agent Frameworks   → LangGraph, CrewAI, AutoGen
+- Red-Teaming Tools  → PyRIT (Microsoft), Garak, DeepTeam, HarmBench, Houdini
+
+## Phase 3 – First 48-Hour Setup Commands (Local CPU or Cloud Notebook)
+```bash
+# Local (CPU)
+pip install ollama garak
+ollama pull gemma2:9b   # or phi3:14b – runs on CPU
+garak --model_type ollama --model_name gemma2:9b
+
+# Cloud notebook (Colab/Kaggle)
+!pip install garak pyrith
+# Then run probes on hosted models
