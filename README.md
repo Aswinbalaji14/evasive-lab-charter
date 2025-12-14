@@ -1,4 +1,4 @@
-```markdown
+markdown
 # Evasive AI – Fully Open-Source Red-Teaming Lab Roadmap
 Updated: December 14, 2025  
 Goal: Build the leading open-source adversarial ML / LLM red-teaming lab  
