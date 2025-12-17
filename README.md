@@ -1,9 +1,15 @@
 # Evasive Baselines
 Open reproductions of attacks from NIST AI 100-2e2025
 
-| Date       | Model                     | Probe Type     | NISTAML ID     | Success Rate | Notes                     |
-|------------|---------------------------|----------------|----------------|--------------|---------------------------|
-| 2025-12-17 | Phi-3-mini-4k-instruct    | promptinject   | .015 / .018    | 57.51% (RogueString) <br> 29.16% (KillHumans) <br> 63.96% (LongPrompt) | First baseline — high vulnerability to injection |
+First baseline: Prompt injection on Phi-3-mini-4k-instruct (Garak v0.13.3, Colab T4)
+
+| Probe Variant       | Success Rate | NISTAML ID     |
+|---------------------|--------------|----------------|
+| AttackRogueString   | 57.51%      | .015 / .018    |
+| HijackKillHumans    | 29.16%      | .015 / .018    |
+| HijackLongPrompt    | 63.96%      | .015 / .018    |
+
+High vulnerability to prompt injection confirmed on 3.8B open model.
 
 
 
