@@ -1,3 +1,14 @@
+# Evasive Baselines
+Open reproductions of attacks from NIST AI 100-2e2025
+
+| Date       | Model                     | Probe Type     | NISTAML ID     | Success Rate | Notes                     |
+|------------|---------------------------|----------------|----------------|--------------|---------------------------|
+| 2025-12-17 | Phi-3-mini-4k-instruct    | promptinject   | .015 / .018    | 57.51% (RogueString) <br> 29.16% (KillHumans) <br> 63.96% (LongPrompt) | First baseline — high vulnerability to injection |
+
+
+
+
+
 # Evasive AI – Fully Open-Source Red-Teaming Lab Roadmap
 Updated: December 14, 2025  
 Goal: Build the leading open-source adversarial ML / LLM red-teaming lab  
